@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    cli:
+      image: ronaldgcr/apt_fair_backend:cli
+      environment:
+        - DEV_UID=${DEV_UID}
+        - DEV_GID=${DEV_GID}
+      volumes:
+        - ./:/app
+        - ./ssh/:/app/.ssh/
+      command: composer update

@@ -1,0 +1,64 @@
+{
+  "name": "bumeran/bumeran-core",
+  "authors": [
+    {
+      "name": "Ronald Cutisaca",
+      "email": "ronaldfox2015@gmail.com"
+    }
+  ],
+  "require": {
+    "beberlei/assert": "^2.5",
+    "ramsey/uuid": "^3.4"
+  },
+  "require-dev": {
+    "swiftmailer/swiftmailer": "^5.4",
+    "solarium/solarium": "^3.6",
+    "aws/aws-sdk-php": "^3.18",
+    "doctrine/orm": "^2.5",
+    "doctrine/data-fixtures": "^1.2.1",
+    "phpunit/phpunit": "^5.0",
+    "phpunit/php-code-coverage": "^3.3",
+    "squizlabs/php_codesniffer": "^2.6",
+    "bruli/php-git-hooks": "^4.1.6",
+    "apigen/apigen": "^4.1",
+    "nelmio/alice": "^2.2",
+    "doctrine/migrations": "^1.4",
+    "monolog/monolog": "^1.21",
+    "mongodb/mongodb": "^1.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bumeran\\": "src/"
+    }
+  },
+  "scripts": {
+    "check": [
+      "@cs",
+      "@test"
+    ],
+    "doc": "mkdir -p doc && apigen generate -s refactor/src -d doc/ &",
+    "run-doc": "php -S 0.0.0.0:9090 -t doc/ &",
+    "cs": "phpcs",
+    "cs-fix": "phpcbf",
+    "test": "phpunit",
+    "post-install-cmd": [
+      "PhpGitHooks\\Infrastructure\\Composer\\ConfiguratorScript::buildConfig"
+    ],
+    "post-update-cmd": [
+      "PhpGitHooks\\Infrastructure\\Composer\\ConfiguratorScript::buildConfig"
+    ]
+  },
+  "suggest": {
+    "symfony/options-resolver": "Symfony\\Component\\OptionsResolver\\OptionsResolver for DTO validation",
+    "doctrine/orm" : "Doctrine ORM Features",
+    "solarium/solarium" : "Apache Solr Adapter Repository",
+    "smongodb/mongodb" : "MongoDB Adapter Repository",
+    "monolog/monolog" : "Log Library for everything"
+  },
+  "minimum-stability": "dev",
+  "extra": {
+     "branch-alias": {
+       "dev-master": "1.0.1"
+     }
+  }
+}

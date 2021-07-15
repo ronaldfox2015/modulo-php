@@ -1,0 +1,20 @@
+parameters: ~
+
+services:
+
+    apt.exception.listener:
+      class: Bumeran\Common\Symfony\EventListener\ExceptionListener
+      tags:
+        - { name: kernel.event_listener, event: kernel.exception,  method: onKernelException }
+
+    apt.exception.controller:
+      class: Bumeran\Common\Symfony\Controller\ExceptionController
+      arguments: ['@twig', '%kernel.debug%']
+
+    apt.event_listener.json_request:
+      class: Bumeran\Common\Symfony\EventListener\JsonBodyListener
+      tags:
+       - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 100 }
+
+    apt.domain_event_manager:
+       class: Bumeran\Common\Domain\Model\DomainEventManager
